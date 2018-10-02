@@ -10,3 +10,5 @@ User 'stajic' added new email 'aleksa-jovanovic@outlook.com' for contact 'Aleksa
 User 'stajic' added new email 'aleksa-jovanovic@gmail.com' for contact 'Aleksa' Jovanovic at: 2018-10-02 15:28:33
 User 'stajic' added new phone '0616186608' for contact 'Aleksa Jovanovic' at: 2018-10-02 15:28:33
 User 'stajic' added new phone '06555456' for contact 'Aleksa Jovanovic' at: 2018-10-02 15:28:33
+User 'stajic' added new contact Sava Ristic at: 2018-10-02 16:42:40
+User 'stajic' added new contact Sava Ristic at: 2018-10-02 16:47:41

@@ -200,6 +200,7 @@ public class AddChangeContact extends javax.swing.JDialog {
             if (isCreation) {
                 message = addContact(firstname, lastname, contactType, description);
                 parent.getContactsListModel().addElement(contact);
+                parent.getContacts().add(contact);
             } else {
                 message = changeContact(firstname, lastname, contactType, description);
             }

@@ -155,6 +155,7 @@ public class DashboardFrame extends javax.swing.JFrame {
                     contactsListModel.remove(lContacts.getSelectedIndex());
                     contacts.remove(selectedContact);
                     populateTable(contactsTableModel, contacts);
+                    contactsTableModel.setRowCount(0);
                 }
             }
         } else {
