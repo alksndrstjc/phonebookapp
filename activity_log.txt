@@ -1,0 +1,12 @@
+User 'stajic' changed contact's 'Sava Ristic' data at: 2018-10-02 15:30:03
+User 'stajic' added new email 'em@em.com' for contact 'Sava' Ristic at: 2018-10-02 15:30:03
+User 'stajic' added new phone '51241251' for contact 'Sava Ristic' at: 2018-10-02 15:30:03
+User 'stajic' added new phone '512512512' for contact 'Sava Ristic' at: 2018-10-02 15:31:58
+User 'stajic' changed contact's 'Dimitrije Milenkovic' data at: 2018-10-02 14:44:49
+User 'stajic' added new email 'mitan-milenkovic@gmail.com' for contact 'Dimitrije' Milenkovic at: 2018-10-02 14:44:50
+User 'stajic' added new phone '0637317427' for contact 'Dimitrije Milenkovic' at: 2018-10-02 14:44:50
+User 'stajic' changed contact's 'Aleksa Jovanovic' data at: 2018-10-02 15:28:33
+User 'stajic' added new email 'aleksa-jovanovic@outlook.com' for contact 'Aleksa' Jovanovic at: 2018-10-02 15:28:33
+User 'stajic' added new email 'aleksa-jovanovic@gmail.com' for contact 'Aleksa' Jovanovic at: 2018-10-02 15:28:33
+User 'stajic' added new phone '0616186608' for contact 'Aleksa Jovanovic' at: 2018-10-02 15:28:33
+User 'stajic' added new phone '06555456' for contact 'Aleksa Jovanovic' at: 2018-10-02 15:28:33
