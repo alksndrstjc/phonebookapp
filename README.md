@@ -1,6 +1,6 @@
 # phonebook
 
-A phonebook app. Built in Java. Swing/JDBC/MySQL
+A phonebook app. Built in Java. Swing/JDBC/MySQL/Maven
 // it has a terrible gui, though
 
 functionalities:
