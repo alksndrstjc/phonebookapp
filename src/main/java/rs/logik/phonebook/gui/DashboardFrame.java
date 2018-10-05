@@ -29,7 +29,7 @@ public class DashboardFrame extends javax.swing.JFrame {
     private ArrayList<Contact> contacts;
     private DefaultListModel<Contact> contactsListModel;
     private DefaultTableModel contactsTableModel;
-    private static final int COLUMNS = 7;
+    private static final int COLUMNS = 8;
     DashboardFrame thizz = this;
 
     public ArrayList<Contact> getContacts() {
@@ -53,9 +53,8 @@ public class DashboardFrame extends javax.swing.JFrame {
         contactsListModel = new DefaultListModel<>();
         lContacts.setModel(contactsListModel);
         // kreiranje modela i setovanje na tabelu koja trenutno ne postoji
-        String headers[] = {"Firstname", "Lastname", "Contact type", "Description", "Phone", "Phone type", "E-mail"};
-        //contactsTableModel = new DefaultTableModel(headers, COLUMNS);
 
+        //contactsTableModel = new DefaultTableModel(headers, COLUMNS);
         contactsTableModel = (DefaultTableModel) this.tContacts.getModel();
         // mora da se napravi Tabela
         //tContacts.setModel(contactsTableModel);
@@ -69,6 +68,7 @@ public class DashboardFrame extends javax.swing.JFrame {
         }
         // punjenje tabele
         populateTable(contactsTableModel, contacts);
+        tContacts.removeColumn(tContacts.getColumn("Id"));
 
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter(contactsTableModel);
         tContacts.setRowSorter(trs);
@@ -174,6 +174,11 @@ public class DashboardFrame extends javax.swing.JFrame {
                 List<ContactEmail> emails = null;
                 switch (j) {
                     case 0:
+                        int id = c.getContactId();
+                        input = String.valueOf(id);
+                        tmodel.setValueAt(input, i, j);
+                        break;
+                    case 1:
                         String firstname = c.getFirstname();
                         if (firstname != null) {
                             input = firstname;
@@ -182,7 +187,7 @@ public class DashboardFrame extends javax.swing.JFrame {
                         }
                         tmodel.setValueAt(input, i, j);
                         break;
-                    case 1:
+                    case 2:
                         String lastname = c.getLastname();
                         if (lastname != null) {
                             input = lastname;
@@ -191,7 +196,7 @@ public class DashboardFrame extends javax.swing.JFrame {
                         }
                         tmodel.setValueAt(input, i, j);
                         break;
-                    case 2:
+                    case 3:
                         String contacttype = c.getContactType();
                         if (contacttype != null) {
                             input = contacttype;
@@ -200,7 +205,7 @@ public class DashboardFrame extends javax.swing.JFrame {
                         }
                         tmodel.setValueAt(input, i, j);
                         break;
-                    case 3:
+                    case 4:
                         String description = c.getDescription();
                         if (description != null) {
                             input = description;
@@ -209,7 +214,7 @@ public class DashboardFrame extends javax.swing.JFrame {
                         }
                         tmodel.setValueAt(input, i, j);
                         break;
-                    case 4:
+                    case 5:
                         input = "";
                         phones = c.getPhones();
                         if (phones.size() > 0) {
@@ -217,7 +222,7 @@ public class DashboardFrame extends javax.swing.JFrame {
                         }
                         tmodel.setValueAt(input, i, j);
                         break;
-                    case 5:
+                    case 6:
                         input = "";
                         phones = c.getPhones();
                         if (phones.size() > 0) {
@@ -225,7 +230,7 @@ public class DashboardFrame extends javax.swing.JFrame {
                         }
                         tmodel.setValueAt(input, i, j);
                         break;
-                    case 6:
+                    case 7:
                         input = "";
                         emails = c.getEmails();
                         if (emails.size() > 0) {
@@ -299,15 +304,22 @@ public class DashboardFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Firstname", "Lastname", "Contact type", "Description", "Phone #", "Phone type", "E-mail"
+                "Id", "Firstname", "Lastname", "Contact type", "Description", "Phone #", "Phone type", "E-mail"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tContacts);

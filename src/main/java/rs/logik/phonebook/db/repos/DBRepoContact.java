@@ -138,6 +138,45 @@ public class DBRepoContact {
         return contacts;
     }
 
+    public static Contact getContactByContactId(int id) {
+        Contact c = null;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM contact WHERE contactid = ? LIMIT 1";
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int iddb = rs.getInt("contactid");
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String contacttype = rs.getString("contacttype");
+                String description = rs.getString("description");
+                boolean isActive = rs.getBoolean("isactive");
+                DateTime dateChanged = HelperDateTimeString.getDateTimeFromString(rs.getString("datechanged"));
+                int userId = rs.getInt("userid");
+
+                c = new Contact(id, firstname, lastname, contacttype, description, isActive, dateChanged, userId);
+
+                getAllEmailForContact(c);
+                getAllPhonesForContact(c);
+
+                HelperResourceCloser.closeResources(rs, ps, conn);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBRepoContact.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            HelperResourceCloser.closeResources(rs, ps, conn);
+        }
+
+        return c;
+    }
+
     //contactid, firstname, lastname, contacttype, description, isactive, datechanged, userid
     public static void saveContactForUser(User u, Contact c) {
         if (u != null && u.isActive() && c != null && c.isActive()) {

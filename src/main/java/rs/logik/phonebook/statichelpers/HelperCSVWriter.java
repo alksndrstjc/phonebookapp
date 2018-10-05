@@ -2,6 +2,10 @@ package rs.logik.phonebook.statichelpers;
 
 import java.io.PrintWriter;
 import javax.swing.table.DefaultTableModel;
+import rs.logik.phonebook.db.beans.Contact;
+import rs.logik.phonebook.db.beans.ContactEmail;
+import rs.logik.phonebook.db.beans.ContactPhone;
+import rs.logik.phonebook.db.repos.DBRepoContact;
 
 public class HelperCSVWriter {
 
@@ -15,34 +19,22 @@ public class HelperCSVWriter {
         String email = null;
 
         pw.println("firstname, lastname, contacttype, description, phone, phonetype, email");
-        for (int i = 0; i < model.getRowCount(); i++) {
-            for (int j = 0; j < model.getColumnCount(); j++) {
-                switch (j) {
-                    case 0:
-                        firstname = (String) model.getValueAt(i, j);
-                        break;
-                    case 1:
-                        lastname = (String) model.getValueAt(i, j);
-                        break;
-                    case 2:
-                        contacttype = (String) model.getValueAt(i, j);
-                        break;
-                    case 3:
-                        description = (String) model.getValueAt(i, j);
-                        break;
-                    case 4:
-                        phone = (String) model.getValueAt(i, j);
-                        break;
-                    case 5:
-                        phonetype = (String) model.getValueAt(i, j);
-                        break;
-                    case 6:
-                        email = (String) model.getValueAt(i, j);
-                        break;
-                }
+        for (int i = 0, j = 0; i < model.getRowCount(); i++) {
+            int id = Integer.parseInt((String) model.getValueAt(i, j));
+            Contact c = DBRepoContact.getContactByContactId(id);
+            firstname = c.getFirstname();
+            lastname = c.getLastname();
+            contacttype = c.getContactType();
+            description = c.getDescription();
+            pw.print(String.format("%s, %s, %s, %s, ", firstname, lastname, contacttype, description));
+            for (ContactPhone cp : c.getPhones()) {
+                pw.print(String.format("%s, %s, ", cp.getPhonenum(), cp.getPhonenumType()));
             }
-            String output = String.format("%s, %s, %s, %s, %s, %s, %s", firstname, lastname, contacttype, description, phone, phonetype, email);
-            pw.println(output);
+
+            for (ContactEmail ce : c.getEmails()) {
+                pw.print(String.format("%s, ", ce.getEmail()));
+            }
+            pw.println();
         }
     }
 }
